@@ -1,4 +1,4 @@
-# EventPulse API
+# EventPulse API V1.0.0 Release
 
 Real-time Event Management Platform API built with Node.js, Express, MongoDB (Mongoose) and Socket.io.
 

@@ -28,6 +28,20 @@ const router = express.Router()
  *     tags: [Categories]
  *     security:
  *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [name]
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 example: Music
+ *               description:
+ *                 type: string
+ *                 example: Concerts and live music events
  *     responses:
  *       201:
  *         description: Category created

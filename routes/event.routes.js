@@ -66,6 +66,36 @@ const router = express.Router()
  *     tags: [Events]
  *     security:
  *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [title, description, category, date, city, venue, capacity]
+ *             properties:
+ *               title:
+ *                 type: string
+ *                 example: Tech Conference 2026
+ *               description:
+ *                 type: string
+ *                 example: A gathering of developers and founders
+ *               category:
+ *                 type: string
+ *                 example: 665c1a2e9f8b2c1234567890
+ *               date:
+ *                 type: string
+ *                 format: date-time
+ *                 example: 2026-12-01T10:00:00.000Z
+ *               city:
+ *                 type: string
+ *                 example: Cairo
+ *               venue:
+ *                 type: string
+ *                 example: Cairo Convention Center
+ *               capacity:
+ *                 type: integer
+ *                 example: 100
  *     responses:
  *       201:
  *         description: Event created
@@ -107,6 +137,28 @@ router
  *         name: id
  *         required: true
  *         schema: { type: string }
+ *     requestBody:
+ *       required: false
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *               category:
+ *                 type: string
+ *               date:
+ *                 type: string
+ *                 format: date-time
+ *               city:
+ *                 type: string
+ *               venue:
+ *                 type: string
+ *               capacity:
+ *                 type: integer
  *     responses:
  *       200:
  *         description: Event updated

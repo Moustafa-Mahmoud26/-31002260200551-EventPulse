@@ -1,8 +1,9 @@
 const express = require('express')
+const path = require('path')
+const fs = require('fs')
 const cors = require('cors')
 const morgan = require('morgan')
 const mongoSanitize = require('express-mongo-sanitize')
-const swaggerUi = require('swagger-ui-express')
 const swaggerSpec = require('./config/swagger')
 
 const authRoutes = require('./routes/auth.routes')
@@ -24,7 +25,15 @@ if (process.env.NODE_ENV !== 'test') {
   app.use(morgan('dev'))
 }
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
+const apiDocsHtml = fs.readFileSync(path.join(__dirname, 'public', 'api-docs.html'), 'utf-8')
+
+app.get('/api-docs/swagger.json', (req, res) => {
+  res.status(200).json(swaggerSpec)
+})
+
+app.get('/api-docs', (req, res) => {
+  res.status(200).send(apiDocsHtml)
+})
 
 app.use('/health', healthRoutes)
 app.use('/api/auth', authRoutes)
